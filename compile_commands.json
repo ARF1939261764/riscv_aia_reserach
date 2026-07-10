@@ -1,0 +1,32 @@
+[
+  {
+    "arguments": [
+      "/home/tangf/work/03_riscv-gnu-toolchain/riscv64-unknown-elf/bin/riscv64-unknown-elf-gcc",
+      "-O0",
+      "-g3",
+      "-std=gnu99",
+      "-Wa,-march=rv64gc",
+      "-mabi=lp64d",
+      "-mcmodel=medany",
+      "-I",
+      "./startup/",
+      "-I",
+      "./sys/sys",
+      "-I",
+      "./sys/printf",
+      "-I",
+      "./sdk/uart",
+      "-I",
+      "./sdk/rocc",
+      "-I",
+      "./case/smoke",
+      "-c",
+      "-o",
+      "build/smoke/objs/main.o",
+      "./case/smoke/main.c"
+    ],
+    "directory": "/home/tangf/work/09_riscv_aia_reserach/riscv_aia_reserach/app/case1_aia_smoke",
+    "file": "/home/tangf/work/09_riscv_aia_reserach/riscv_aia_reserach/app/case1_aia_smoke/case/smoke/main.c",
+    "output": "/home/tangf/work/09_riscv_aia_reserach/riscv_aia_reserach/app/case1_aia_smoke/build/smoke/objs/main.o"
+  }
+]
