@@ -46,12 +46,17 @@ _start:
   la a1,__BSS_END__
 _clean_bss_start:
   beq a0,a1,_clean_bss_end
+  sb  x0,0(a0)
   add a0,a0,1
   j _clean_bss_start
 _clean_bss_end:
 
-  la t0,exit
+  la t0,execption
   csrw mtvec,t0
+
+  li t0, 0x6000
+  csrs mstatus, t0
+
 
 //*****************************
 //stack
@@ -76,3 +81,7 @@ _clean_bss_end:
 //*****************************
 exit:
   j .
+
+execption:
+  j .
+

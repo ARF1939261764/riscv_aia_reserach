@@ -6,10 +6,11 @@ QEMU := ./qemu/qemu-10.2.0-rc1/build/qemu-system-riscv64
 
 default:
 	@make -C ./app/${TESTNAME}
-	cp ./app/${TESTNAME}/build/ ./build/${TESTNAME} -rf
+	@cp ./app/${TESTNAME}/build/ ./build/${TESTNAME}/ -rf
 
 clean:
 	@make -C ./app/${TESTNAME} clean
+	@rm -rf ./build/*
 
 cleanall:
 	@make -C ./app/${TESTNAME} clean
@@ -17,7 +18,7 @@ cleanall:
 	@make -C ./qemu/qemu-10.2.0-rc1/ distclean
 
 run:
-	${QEMU} -M virt,aia=aplic -cpu rv64,svpbmt=on -m 2G -nographic -device loader,file=./build/${TESTNAME}/smoke/main.bin,addr=0x80000000 
+	@${QEMU} -M virt,aia=aplic -cpu rv64,svpbmt=on -m 2G -nographic -device loader,file=./build/${TESTNAME}/smoke/main.bin,addr=0x80000000 
 
 debug:
 	${QEMU} -M virt,aia=aplic -cpu rv64,svpbmt=on -m 2G -nographic -device loader,file=./build/${TESTNAME}/smoke/main.bin,addr=0x80000000  -s -S

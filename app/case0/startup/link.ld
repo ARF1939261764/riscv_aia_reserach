@@ -11,7 +11,8 @@ MEMORY {
   RAM (rwx) : ORIGIN = 0x80000000, LENGTH = 256K
 }
 
-STACK_SIZE = 1024;
+STACK_SIZE = 32k;
+HEAD_SIZE = 32k;
 
 CL_SIZE = 32;
 
@@ -50,6 +51,12 @@ SECTIONS {
     PROVIDE(_shell_command_start = .);
     *(shellCommand)
     PROVIDE(_shell_command_end = .);
+  } > RAM
+
+  .heap ALIGN(CL_SIZE) : {
+    PROVIDE(__HEAP_START = .);
+    . += HEAD_SIZE;
+    PROVIDE(__HEAP_END = .);
   } > RAM
 
   .stack ORIGIN(RAM) + LENGTH(RAM) - STACK_SIZE : {

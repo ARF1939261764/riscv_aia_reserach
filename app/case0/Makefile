@@ -5,7 +5,7 @@ TESTNAME = smoke
 # 可执行文件名
 TARGET = main
 
-ARCH = g
+ARCH = gc
 ABI = lp64d
 
 # gcc类型
@@ -21,7 +21,7 @@ CFLAGS := -O0 -g3 -std=gnu99 -Wa,-march=rv64$(ARCH) -mabi=$(ABI)  -mcmodel=medan
 
 
 
-LDFLAGS   ?= -Wl,--no-warn-rwx-segments -T ./startup/link.ld -nostartfiles -march=rv64$(ARCH) -mabi=$(ABI)  -mcmodel=medany
+LDFLAGS   ?= -Wl,--no-warn-rwx-segments -T ./startup/link.ld -nostartfiles -march=rv64$(ARCH) -mabi=$(ABI)  -mcmodel=medany -u _printf_float --specs=nano.specs
 
 
 # 存放中间文件的路径
